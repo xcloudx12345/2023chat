@@ -22,7 +22,7 @@ def check_verion() -> None:
         name, version = installed.project_name, installed.version
         # Compare the version number to see if it matches the one in requirements.txt
         if package != f'{name}=={version}':
-            logger.error(f'{name} version {version} is installed but does not match the requirements')
+            logger.error('%s version %s is installed but does not match the requirements',name,version)
             sys.exit();
 
 
