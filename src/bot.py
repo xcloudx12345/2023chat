@@ -109,7 +109,7 @@ def run_discord_bot():
         if data.get(str(message.guild.id)) is None:
             return
         if str(message.channel.id) in data[str(message.guild.id)]:
-            logger.info("\x1b[31m%s#%s\x1b[0m : '%s' (%s)" % (message.author.name, message.author.discriminator, message.content, message.channel.name))
+            logger.info("\x1b[31m%s#%s\x1b[0m : '%s' (%s)", message.author.name, message.author.discriminator, message.content, message.channel.name)
             response = await responses.handle_response(message.content)
             await message.channel.send(response, reference=message)
 
