@@ -78,7 +78,7 @@ async def send_start_prompt(client):
             with open(prompt_path, "r",encoding='utf-8') as f:
                 prompt = f.read()
                 if (config['discord_channel_id']):
-                    logger.info(f"Send starting prompt with size {len(prompt)}")
+                    logger.info("Send starting prompt with size %s", len(prompt))
                     responseMessage = await responses.handle_response(prompt)
                     channel = client.get_channel(int(config['discord_channel_id']))
                     await channel.send(responseMessage)
@@ -86,9 +86,9 @@ async def send_start_prompt(client):
                 else:
                     logger.info("No Channel selected. Skip sending starting prompt.")
         else:
-            logger.info(f"No {prompt_name}. Skip sending starting prompt.")
+            logger.info("No %s. Skip sending starting prompt.",prompt_name)
     except Exception as e:
-        logger.exception(f"Error while sending starting prompt: {e}")
+        logger.exception("Error while sending starting prompt: %s",e)
 
 
 def run_discord_bot():
