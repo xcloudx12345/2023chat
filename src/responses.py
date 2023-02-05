@@ -5,7 +5,6 @@ from asgiref.sync import sync_to_async
 
 
 def get_config() -> dict:
-    import os
     # get config.json path
     config_dir = os.path.abspath(__file__ + "/../../")
     config_name = 'config.json'

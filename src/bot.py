@@ -68,7 +68,6 @@ async def send_message(message, user_message):
 
 
 async def send_start_prompt(client):
-    import os
     import os.path
 
     config_dir = os.path.abspath(__file__ + "/../../")
