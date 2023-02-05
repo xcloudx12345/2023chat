@@ -82,7 +82,7 @@ async def send_start_prompt(client):
                     responseMessage = await responses.handle_response(prompt)
                     channel = client.get_channel(int(config['discord_channel_id']))
                     await channel.send(responseMessage)
-                    logger.info(f"Starting prompt response:{responseMessage}")
+                    logger.info("Starting prompt response: %s",responseMessage")
                 else:
                     logger.info("No Channel selected. Skip sending starting prompt.")
         else:
