@@ -43,7 +43,7 @@ async def send_message(message, user_message):
                     formatted_code_block += line + "\n"  # Add the line and seperate with new line
 
                 # Send the code block in a separate message
-                if (len(formatted_code_block) > 2000):
+                if len(formatted_code_block) > 2000:
                     code_block_chunks = [formatted_code_block[i:i+1900]
                                          for i in range(0, len(formatted_code_block), 1900)]
                     for chunk in code_block_chunks:
@@ -77,7 +77,7 @@ async def send_start_prompt(client):
         if os.path.isfile(prompt_path) and os.path.getsize(prompt_path) > 0:
             with open(prompt_path, "r",encoding='utf-8') as f:
                 prompt = f.read()
-                if (config['discord_channel_id']):
+                if config['discord_channel_id']:
                     logger.info("Send starting prompt with size %s", len(prompt))
                     responseMessage = await responses.handle_response(prompt)
                     channel = client.get_channel(int(config['discord_channel_id']))
