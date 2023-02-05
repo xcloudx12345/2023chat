@@ -98,7 +98,7 @@ def run_discord_bot():
     async def on_ready():
         await send_start_prompt(client)
         await client.tree.sync()
-        logger.info(f'{client.user} is now running!')
+        logger.info('%s is now running!',client.user)
 
     @client.event
     async def on_message(message):
