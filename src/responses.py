@@ -1,7 +1,6 @@
 import os
 from revChatGPT.Official import AsyncChatbot
 import json
-from asgiref.sync import sync_to_async
 
 
 def get_config() -> dict:
