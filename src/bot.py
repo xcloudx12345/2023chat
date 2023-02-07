@@ -122,7 +122,7 @@ def run_discord_bot():
     @client.tree.command(name="chat", description="Chat với con bot")
     async def chat(interaction: discord.Interaction, *, message: str):
         if interaction.guild is None:
-            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            await interaction.user.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
             return
         if interaction.user == client.user:
             return
@@ -131,13 +131,13 @@ def run_discord_bot():
         channel = str(interaction.channel)
         logger.info(
             f"\x1b[31m{username}\x1b[0m : '{user_message}' ({channel})")
-        async with interaction.channel.typing():
+        async with interaction.user.typing():
             await send_message(interaction, user_message)
 
     @client.tree.command(name="private", description="Chuyển sang chế độ riêng tư")
     async def private(interaction: discord.Interaction):
         if interaction.guild is None:
-            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            await interaction.user.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
             return
         global isPrivate
         await interaction.response.defer(ephemeral=False)
@@ -152,7 +152,7 @@ def run_discord_bot():
     @client.tree.command(name="public", description="Chuyển sang chế độ công khai")
     async def public(interaction: discord.Interaction):
         if interaction.guild is None:
-            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            await interaction.user.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
             return
         global isPrivate
         await interaction.response.defer(ephemeral=False)
@@ -167,7 +167,7 @@ def run_discord_bot():
     @client.tree.command(name="reset", description="Xóa ký ức bot")
     async def reset(interaction: discord.Interaction):
         if interaction.guild is None:
-            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            await interaction.user.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
             return
         responses.chatbot.reset()
         await interaction.response.defer(ephemeral=False)
@@ -180,9 +180,9 @@ def run_discord_bot():
     @client.tree.command(name="auto", description="Lưu id kênh và tên kênh để bot trả lời tự động")
     async def auto(interaction: discord.Interaction):
         if interaction.guild is None:
-            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            await interaction.user.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
             return
-        channel_id = str(interaction.channel.id)
+        channel_id = str(interaction.channel_id)
         channel_name = str(interaction.channel)
         guild_id = str(interaction.guild.id)
         guild_name = str(interaction.guild)
