@@ -16,7 +16,7 @@ class aclient(discord.Client):
     def __init__(self) -> None:
         super().__init__(intents=discord.Intents.all())
         self.tree = app_commands.CommandTree(self)
-        self.activity = discord.Activity(type=discord.ActivityType.watching, name="/chat | /help")
+        self.activity = discord.Activity(type=discord.ActivityType.playing, name="/chat | /help")
 
 
 async def send_message(message, user_message):
@@ -210,7 +210,7 @@ def run_discord_bot():
     @client.tree.command(name="help", description="Trợ giúp")
     async def help(interaction: discord.Interaction):
         if interaction.guild is None:
-            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            await interaction.user.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
             return
         await interaction.response.defer(ephemeral=False)
         await interaction.followup.send(":star:**LỆNH CƠ BẢN** \n    `/chat [message]` Chat với bot!\n    `/public` Chuyển sang chế độ Public\n    `/private` Chuyển sang chế độ Private\n    `/auto` Lưu kênh chat để bot trả lời tự động\n    `/reset` Xóa ký ức bot")
