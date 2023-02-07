@@ -19,8 +19,9 @@ config = get_config()
 #chatbot = Chatbot(api_key=config['openAI_key'])
 chatbot = AsyncChatbot(api_key=os.environ['openAI_key'])
 
+
 async def handle_response(message) -> str:
-    response = await chatbot.ask(message)
+    response = await chatbot.ask(message, 0)
     responseMessage = response["choices"][0]["text"]
 
     return responseMessage

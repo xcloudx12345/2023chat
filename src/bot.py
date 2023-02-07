@@ -106,16 +106,24 @@ def run_discord_bot():
             return
         with open('db.json', 'r') as file:
             data = json.load(file)
+        if message.guild is None:
+            await message.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            return
+        # your code to handle messages in servers here
         if data.get(str(message.guild.id)) is None:
             return
         if str(message.channel.id) in data[str(message.guild.id)]:
             logger.info("\x1b[31m%s#%s\x1b[0m : '%s' (%s)", message.author.name, message.author.discriminator, message.content, message.channel.name)
-            response = await responses.handle_response(message.content)
-            await message.channel.send(response, reference=message)
+            async with message.channel.typing():
+                response = await responses.handle_response(message.content)
+                await message.channel.send(response, reference=message)
 
 
     @client.tree.command(name="chat", description="Chat với con bot")
     async def chat(interaction: discord.Interaction, *, message: str):
+        if interaction.guild is None:
+            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            return
         if interaction.user == client.user:
             return
         username = str(interaction.user)
@@ -123,10 +131,14 @@ def run_discord_bot():
         channel = str(interaction.channel)
         logger.info(
             f"\x1b[31m{username}\x1b[0m : '{user_message}' ({channel})")
-        await send_message(interaction, user_message)
+        async with interaction.channel.typing():
+            await send_message(interaction, user_message)
 
     @client.tree.command(name="private", description="Chuyển sang chế độ riêng tư")
     async def private(interaction: discord.Interaction):
+        if interaction.guild is None:
+            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            return
         global isPrivate
         await interaction.response.defer(ephemeral=False)
         if not isPrivate:
@@ -139,6 +151,9 @@ def run_discord_bot():
 
     @client.tree.command(name="public", description="Chuyển sang chế độ công khai")
     async def public(interaction: discord.Interaction):
+        if interaction.guild is None:
+            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            return
         global isPrivate
         await interaction.response.defer(ephemeral=False)
         if isPrivate:
@@ -151,6 +166,9 @@ def run_discord_bot():
 
     @client.tree.command(name="reset", description="Xóa ký ức bot")
     async def reset(interaction: discord.Interaction):
+        if interaction.guild is None:
+            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            return
         responses.chatbot.reset()
         await interaction.response.defer(ephemeral=False)
         await interaction.followup.send("> **Info: Ây da mất trí nhớ gòi, tui là đâu, đây là ai!.**")
@@ -161,6 +179,9 @@ def run_discord_bot():
 
     @client.tree.command(name="auto", description="Lưu id kênh và tên kênh để bot trả lời tự động")
     async def auto(interaction: discord.Interaction):
+        if interaction.guild is None:
+            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            return
         channel_id = str(interaction.channel.id)
         channel_name = str(interaction.channel)
         guild_id = str(interaction.guild.id)
@@ -188,6 +209,9 @@ def run_discord_bot():
 
     @client.tree.command(name="help", description="Trợ giúp")
     async def help(interaction: discord.Interaction):
+        if interaction.guild is None:
+            await interaction.channel.send("Xin lỗi, tôi không trả lời tin nhắn riêng.")
+            return
         await interaction.response.defer(ephemeral=False)
         await interaction.followup.send(":star:**LỆNH CƠ BẢN** \n    `/chat [message]` Chat với bot!\n    `/public` Chuyển sang chế độ Public\n    `/private` Chuyển sang chế độ Private\n    `/auto` Lưu kênh chat để bot trả lời tự động\n    `/reset` Xóa ký ức bot")
         logger.info(
