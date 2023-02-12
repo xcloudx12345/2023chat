@@ -21,7 +21,7 @@ def get_config() -> dict:
 
 # Call the get_config function to retrieve config data as a dict
 config = get_config()
-chatbot = Chatbot(email="phuoclt92@gmail.com", password="9627008a")
+chatbot = Chatbot(email=os.environ['email'], password=os.environ['pass'])
 # handle_response function returns response from chatbot to a message
 async def handle_response(message) -> str:
     response = []
