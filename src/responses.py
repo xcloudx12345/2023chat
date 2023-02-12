@@ -4,7 +4,9 @@ from revChatGPT.V2 import Chatbot
 from revChatGPT.V2 import Conversation
 from revChatGPT.V2 import Conversations
 import json
+from dotenv import load_dotenv
 
+load_dotenv()
 # Get config data as dictionary
 def get_config() -> dict:
     # Get the path for the config.json file using ospath library
@@ -21,7 +23,7 @@ def get_config() -> dict:
 
 # Call the get_config function to retrieve config data as a dict
 config = get_config()
-chatbot = Chatbot(email=os.environ['email'], password=os.environ['pass'])
+chatbot = Chatbot(email=os.getenv("email"), password=os.getenv("password"))
 # handle_response function returns response from chatbot to a message
 async def handle_response(message) -> str:
     response = []
