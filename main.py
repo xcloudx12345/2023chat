@@ -26,7 +26,8 @@ def check_verion() -> None:
             logger.error('%s version %s is installed but does not match the requirements',name,version)
             sys.exit()
 
-keep_alive()
+bot.run_discord_bot()
+"""keep_alive()
 try:
     if __name__ == '__main__': 
         check_verion()
@@ -34,4 +35,4 @@ try:
 except discord.errors.HTTPException:
     print("\n\n\nBLOCKED BY RATE LIMITS\nRESTARTING NOW\n\n\n")
     os.system('kill 1')
-    os.system("python restarter.py")
+    os.system("python restarter.py")"""
