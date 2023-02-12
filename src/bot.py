@@ -1,12 +1,12 @@
 import os
 import discord
+import asyncio
 from discord import app_commands
 from src import responses
 from src import log
 import json
 
 logger = log.setup_logger(__name__)
-
 config = responses.get_config()
 
 isPrivate = False
@@ -219,4 +219,4 @@ def run_discord_bot():
 
     #TOKEN = config['discord_bot_token']
     TOKEN = os.environ['discord_bot_token']
-    client.run(TOKEN)
+    asyncio.run(client.run(TOKEN))

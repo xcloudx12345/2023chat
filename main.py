@@ -26,8 +26,6 @@ def check_verion() -> None:
             logger.error('%s version %s is installed but does not match the requirements',name,version)
             sys.exit()
 
-
-
 keep_alive()
 try:
     if __name__ == '__main__': 
