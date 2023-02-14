@@ -361,8 +361,8 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-testing = ["pytest-benchmark", "pytest"]
-dev = ["tox", "pre-commit"]
+dev = ["pre-commit", "tox"]
+testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "protobuf"
@@ -414,6 +414,17 @@ pycryptodomex = ">=3.12.0,<4.0.0"
 docs = ["Sphinx[docs] (>=4.3.2,<6.0.0)", "sphinx-autodoc-typehints[docs] (==1.12.0)", "sphinx-rtd-theme[docs] (>=1.0.0,<2.0.0)"]
 
 [[package]]
+name = "python-dotenv"
+version = "0.21.1"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+cli = ["click (>=5.0)"]
+
+[[package]]
 name = "python-lsp-jsonrpc"
 version = "1.0.0"
 description = "JSON RPC 2.0 server library"
@@ -425,7 +436,7 @@ python-versions = "*"
 ujson = ">=3.0.0"
 
 [package.extras]
-test = ["coverage", "pytest-cov", "pytest", "pyflakes", "pycodestyle", "pylint"]
+test = ["pylint", "pycodestyle", "pyflakes", "pytest", "pytest-cov", "coverage"]
 
 [[package]]
 name = "pytoolconfig"
@@ -619,7 +630,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10.0,<3.11"
-content-hash = "fb067c015bc513d0c02fe4c874bec8981bb015cfef26f1d75b9902805cac1260"
+content-hash = "3a35d6d2a117e9aef6d33ddd4e19adeab6df430670680664e744e2fa47dcf307"
 
 [metadata.files]
 aiohttp = []
@@ -658,6 +669,7 @@ pycparser = []
 pycryptodomex = []
 pyflakes = []
 pyseto = []
+python-dotenv = []
 python-lsp-jsonrpc = []
 pytoolconfig = []
 replit = []
