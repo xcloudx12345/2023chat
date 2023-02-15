@@ -1,6 +1,6 @@
 # Import the necessary libraries
 import os
-from revChatGPT.V2 import Chatbot
+from revChatGPT.V1 import Chatbot
 import json
 
 # Get config data as dictionary
@@ -23,11 +23,10 @@ chatbot = Chatbot(os.environ['email'],os.environ['password'])
 
 # handle_response function returns response from chatbot to a message
 async def handle_response(message) -> str:
-    response = []
-    async for line in chatbot.ask(message):
-        response.append(line["choices"][0]["text"].replace("<|im_end|>", ""))
-        responseMessage = "".join(response)
-    return responseMessage
+    for data in chatbot.ask(prompt, conversation_id=chatbot.config.get("conversation"), parent_id=chatbot.config.get("parent_id")
+        response = data["message"]
+        #responseMessage = "".join(response)
+        return response
     # Return response as string
     
 async def DAN_response(message) -> str:
@@ -36,4 +35,4 @@ async def DAN_response(message) -> str:
         response.append(line["choices"][0]["text"].replace("<|im_end|>", ""))
         responseMessage = "".join(response)
     # Return response as string
-    return responseMessage
+        return responseMessage
