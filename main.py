@@ -4,10 +4,10 @@ import discord
 import os
 from keep_alive import keep_alive
 
+
 def check_verion() -> None:
     import pkg_resources
     import src.log
-
     # init loggger
     logger = src.log.setup_logger(__name__)
 
@@ -24,12 +24,15 @@ def check_verion() -> None:
         name, version = installed.project_name, installed.version
         # Compare the version number to see if it matches the one in requirements.txt
         if package != f'{name}=={version}':
-            logger.error('%s version %s is installed but does not match the requirements',name,version)
+            logger.error(
+                '%s version %s is installed but does not match the requirements',
+                name, version)
             sys.exit()
+
 
 keep_alive()
 try:
-    if __name__ == '__main__': 
+    if __name__ == '__main__':
         check_verion()
         bot.run_discord_bot()
 except discord.errors.HTTPException:

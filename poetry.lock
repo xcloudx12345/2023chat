@@ -361,8 +361,8 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-dev = ["pre-commit", "tox"]
-testing = ["pytest", "pytest-benchmark"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "protobuf"
@@ -436,7 +436,7 @@ python-versions = "*"
 ujson = ">=3.0.0"
 
 [package.extras]
-test = ["pylint", "pycodestyle", "pyflakes", "pytest", "pytest-cov", "coverage"]
+test = ["coverage", "pytest-cov", "pytest", "pyflakes", "pycodestyle", "pylint"]
 
 [[package]]
 name = "pytoolconfig"
